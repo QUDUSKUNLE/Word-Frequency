@@ -6,6 +6,7 @@ class BaseConfig(object):
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = 'BoluwatifeAbike08971'
+    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URI']
 
 
 class ProductionConfig(BaseConfig):
