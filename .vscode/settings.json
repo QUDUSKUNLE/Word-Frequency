@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/Users/andeladeveloper/.virtualenvs/advance-j656ZBYB/bin/python"
+    "python.pythonPath": "/Users/andeladeveloper/.virtualenvs/advance-j656ZBYB/bin/python",
+    "python.linting.enabled": false
 }
