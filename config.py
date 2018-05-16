@@ -1,4 +1,5 @@
 import os
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class BaseConfig(object):
@@ -6,12 +7,10 @@ class BaseConfig(object):
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = 'BoluwatifeAbike08971'
-    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 
 
 class ProductionConfig(BaseConfig):
     DEBUG = False
-
 
 
 class StagingConfig(BaseConfig):
@@ -22,8 +21,8 @@ class StagingConfig(BaseConfig):
 class DevelopmentConfig(BaseConfig):
     DEVELOPMENT = True
     DEBUG = True
+    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 
 
 class TestingConfig(BaseConfig):
     TESTING = True
-
