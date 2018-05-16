@@ -1,3 +1,4 @@
+import json
 import os
 import requests
 import operator
@@ -68,20 +69,20 @@ def count_and_save_words(url):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-
-    results = {}
-
-    if request.method == 'POST':
-        url = request.form['url']
-        if 'http://' not in url[:8]:
-            url = 'http://{url}'.format(**locals())
-
-        job = q.enqueue_call(
-            func=count_and_save_words, args=(url,), result_ttl=5000
-        )
-        print(job.get_id(), job.result)
-
     return render_template('index.html')
+
+
+@app.route('/start', methods=['POST'])
+def get_counts():
+    data = json.loads(request.data.decode())
+    url = data['url']
+    if 'http://' not in url[:8]:
+        url = 'http://{url}'.format(**locals())
+
+    job = q.enqueue_call(
+        func=count_and_save_words, args=(url,), result_ttl=5000
+    )
+    return job.get_id()
 
 @app.route('/results/<job_key>', methods=['GET'])
 def get_results(job_key):
